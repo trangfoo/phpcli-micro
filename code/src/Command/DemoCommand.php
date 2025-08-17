@@ -9,13 +9,10 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
 /**
- * 审计流程第一步命令类
+ * 命令类范例
  *
  * 功能说明：
- * 1. 自动获取类名作为命令名称（AuditStep1）
- * 2. 执行审计流程的第一步操作
- * 3. 记录执行日志
- * 4. 更新Redis计数器
+ *      自动获取类名作为命令名称（DemoCommand）
  */
 class DemoCommand extends Command
 {
@@ -27,7 +24,8 @@ class DemoCommand extends Command
      */
     protected function configure()
     {
-        $this->setName((new \ReflectionClass(__CLASS__))->getShortName())->setDescription('执行数据库CRUD操作示例')
+        $this->setName((new \ReflectionClass(__CLASS__))->getShortName())
+            ->setDescription('执行数据库CRUD操作示例')
             ->setHelp('演示数据库基本操作命令');
     }
 
@@ -47,14 +45,10 @@ class DemoCommand extends Command
         $output->writeln('['.date('Y-m-d H:i:s').'] '.self::getName());
 
 
-
         //调用Redis实例
         $redis = $app->getRedis();
         // 更新Redis计数器，记录执行次数
         $redis->incr('step1_counter');
-
-
-
 
 
 
