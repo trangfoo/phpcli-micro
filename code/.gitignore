@@ -1,0 +1,9 @@
+.settings/
+.project
+*.patch
+.idea/
+.git/
+vendor/
+.env
+.DS_Store
+composer.lock
